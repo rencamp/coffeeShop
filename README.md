@@ -10,4 +10,4 @@ php coffeeShop.php
 When you hit enter, it will ask you to enter the corresponding item number of each menu item. The item number can be found just beside the menu name, inside square brackets.
 Then it will ask the quantity. Always input a number. Otherwise, it will not take note your order.
 
-If it asks 'Want to order more?', just input 'y' or 'yes'. Capitalization for 'y' and 'yes' is not strict. To terminate and go to checkout, just enter 'no' or any character except 'y' and 'yes' of course.
+If it asks 'Want to order more?', just input 'y' or 'yes'. Capitalization for 'y' and 'yes' is not strict. To terminate and go to checkout, just enter 'no' or any character except 'y' and 'yes'.
