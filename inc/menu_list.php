@@ -1,75 +1,99 @@
 <?php
-//formats data to be used for Menu
-//max of 2 tags
-$menu_list = array(
-  [
-      'Chocolate Mud Cake',
-      3,
-      ['desserts','cake']
-  ],
-  [
-      'Vanilla Mud Cake',
-      3,
-      ['desserts','cake']
-  ],
-  [
-      'Boston Cheesecake',
-      3,
-      ['desserts','cake']
-  ],
-  [
-      'Pancake',
-      3,
-      ['desserts']
-  ],
-  [
-      'Waffle',
-      3,
-      ['desserts']
-  ],
-  [
-      'Black',
-      2,
-      ['drinks','coffee']
-  ],
-  [
-      'Latte',
-      2.50,
-      ['drinks','coffee']
-  ],
-  [
-      'Mocha',
-      2.50,
-      ['drinks','coffee']
-  ],
-  [
-      'English',
-      1.50,
-      ['drinks','tea']
-  ],
-  [
-      'Vanilla',
-      0,
-      ['drinks','milkshake']
-  ],
-  [
-      'Caramel',
-      0,
-      ['drinks','milkshake']
-  ],
-  [
-      'Chocolate',
-      0,
-      ['drinks','milkshake']
-  ]
-);
-$menu_array = array();
+//CoffeeShop details
 
-foreach ( $menu_list as $list ) {
-  $menu = new Menu($list[0]);
-  $menu->setPrice($list[1]);
-  $menu->setTag($list[2]);
-  $menu->setBarCode(count($menu_array)+1);
+$desserts = new Desserts();
+$desserts->name = "Chocolate Mud Cake";
+$desserts->price = 3;
+$desserts->id = 1;
+$desserts->add("cakes");
+$desserts->name = "Vanilla Mud Cake";
+$desserts->price = 3;
+$desserts->id = 2;
+$desserts->add("cakes");
+$desserts->name = "Boston Cheesecake";
+$desserts->price = 3;
+$desserts->id = 3;
+$desserts->add("cakes");
+$desserts->name = "Pancake";
+$desserts->price = 3;
+$desserts->id = 4;
+$desserts->add("pancakes");
+$desserts->name = "Waffle";
+$desserts->price = 3;
+$desserts->id = 5;
+$desserts->add("waffles");
+$desserts->name = "Cream";
+$desserts->price = 1;
+$desserts->id = 6;
+$desserts->addOns("cakes");
+$desserts->name = "Fruits";
+$desserts->price = 1;
+$desserts->id = 7;
+$desserts->addOns("pancakes");
+$desserts->name = "Fruits";
+$desserts->price = 1;
+$desserts->id = 8;
+$desserts->addOns("waffles");
 
-  $menu_array[] = $menu;
-}
+$drinks = new Drinks();
+$drinks->name = "Black Coffee";
+$drinks->price = 2;
+$drinks->id = 9;
+$drinks->add("coffee");
+$drinks->name = "Cafe Latte";
+$drinks->price = 2.50;
+$drinks->id = 10;
+$drinks->add("coffee");
+$drinks->name = "Coffee Mocha";
+$drinks->price = 2.50;
+$drinks->id = 11;
+$drinks->add("coffee");
+$drinks->name = "English Tea";
+$drinks->price = 1.50;
+$drinks->id = 12;
+$drinks->add("tea");
+$drinks->name = "Vanilla milkshake";
+$drinks->price = 0;
+$drinks->id = 13;
+$drinks->add("milkshake");
+$drinks->name = "Caramel milkshake";
+$drinks->price = 0;
+$drinks->id = 14;
+$drinks->add("milkshake");
+$drinks->name = "Chocolate milkshake";
+$drinks->price = 0;
+$drinks->id = 15;
+$drinks->add("milkshake");
+$drinks->name = "Beer";
+$drinks->price = 5;
+$drinks->id = 16;
+$drinks->add("beer");
+$drinks->name = "Spirits";
+$drinks->price = 5;
+$drinks->id = 17;
+$drinks->add("spirits");
+
+$toys = new Toys();
+$toys->name = "Teddy Bear";
+$toys->price = 7;
+$toys->id = 18;
+$toys->color = "red";
+$toys->add("stuffed");
+$toys->name = "Teddy Bear";
+$toys->price = 6;
+$toys->id = 19;
+$toys->color = "blue";
+$toys->add("stuffed");
+$toys->name = "Teddy Bear";
+$toys->price = 6;
+$toys->id = 20;
+$toys->color = "orange";
+$toys->add("stuffed");
+$toys->name = "Giraffe";
+$toys->price = 7;
+$toys->id = 21;
+$toys->color = "";
+$toys->add("stuffed");
+
+$menu = array_merge($desserts->displayAll(),$drinks->displayAll());
+$menu = array_merge($menu,$toys->displayAll());
