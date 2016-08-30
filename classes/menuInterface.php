@@ -10,5 +10,9 @@ interface MenuInterface
 {
   public function __construct();
   
+  public function add($category = null);
+  
   public function display($category = null);
+  
+  public function displayAll();
 }
