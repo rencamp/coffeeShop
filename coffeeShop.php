@@ -5,6 +5,7 @@
  *
  * @author     Renee Campanilla
  */
+ include "classes/menuInterface.php";
  include "classes/desserts.php";
  include "classes/drinks.php";
  include "classes/toys.php";
@@ -24,12 +25,20 @@ $status = 0;
 while ($status == 0) {
   echo "\nPlease enter the item number of your order: ";
   $order = trim( fgets( STDIN ) );//user input; what menu item
-  $order_details = Helper::arraySearch($menu,'id', $order);
+  $order = is_numeric($order) ? $order : null;
   echo "Quantity: ";
   $quantity = trim( fgets( STDIN ) );//how many for that menu item
+  $quantity = is_numeric($quantity) ? $quantity : null;
+
+  if ( empty($order) || empty($quantity) ) {
+    exit;
+  } else {
+    echo "Order more? [Yes/No]";//makes the user decide to checkout or continue ordering
+    $more = trim( fgets( STDIN ));
+  }
+
+  $order_details = Helper::arraySearch($menu,'id', $order);
   $order_details['quantity'] = $quantity;
-  echo "Order more? [Yes/No]";//makes the user decide to checkout or continue ordering
-  $more = trim( fgets( STDIN ));
   $status = (strtolower($more) == "yes" || strtolower($more) == "y") ? 0 : 1;//updates status
   $ordered[] = $order_details;
 }

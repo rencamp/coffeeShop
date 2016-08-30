@@ -1,5 +1,5 @@
 <?php
-abstract class MenuAbstract
+abstract class MenuAbstract implements MenuInterface
 {
   public $id;
   public $name;
