@@ -11,35 +11,32 @@ abstract class RenderAbstract
     $massive_string = "";
     foreach ($menu as $items => $value) {
       $massive_string .= ucwords($items) . ":\n";
-      $massive_string .= $this->processSub($value);
-    }
-
-    return $massive_string;
-  }
-
-  public function processSub($submenu){
-    $submenu_string = "";
-    foreach ($submenu as $items => $value) {
-      $submenu_string .= Helper::tabs(1);
-      $submenu_string .= ucwords($items) . "\n";
-      foreach ($value as $key => $single) {
-        $array_keys = array_keys($single);
-        if (is_numeric($key)) {
-          $submenu_string .= Helper::tabs(2);
-          $submenu_string .= $this->formatDetails($single);
-          $submenu_string .= "\n";
-        } elseif (is_string($key))  {
-          $submenu_string .= Helper::tabs(2);
-          $submenu_string .= ucwords($key) ."\n";
-          for ( $x = 0; $x < count($single); $x++ ) {
-            $submenu_string .= Helper::tabs(3);
-            $submenu_string .= $this->formatDetails($single[$x]);
-            $submenu_string .= "\n";
+      foreach ($value as $sub_items => $sub_value) {
+        $massive_string .= Helper::tabs(1);
+        if ( is_numeric($sub_items) ) {
+          $massive_string .= $this->formatDetails($sub_value);
+        } elseif ( is_string($sub_items) ) {
+          $massive_string .= ucwords($sub_items) . "\n";
+          foreach ( $sub_value as $key => $details ) {
+            if ( is_numeric($key) ) {
+              $massive_string .= Helper::tabs(2);
+              $massive_string .= $this->formatDetails($details);
+              $massive_string .= "\n";
+            } elseif ( is_string($key) ) {
+              $massive_string .= Helper::tabs(2);
+              $massive_string .= ucwords($key) . "\n";
+              for ( $x = 0; $x < count($details); $x++ ) {
+                $massive_string .= Helper::tabs(3);
+                $massive_string .= $this->formatDetails($details[$x]);
+                $massive_string .= "\n";
+              }
+            }
           }
         }
+        $massive_string .= "\n";
       }
     }
-    return $submenu_string;
+    return $massive_string;
   }
 
   public function formatDetails($details)

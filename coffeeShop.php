@@ -5,10 +5,7 @@
  *
  * @author     Renee Campanilla
  */
- include "classes/menuInterface.php";
- include "classes/desserts.php";
- include "classes/drinks.php";
- include "classes/toys.php";
+ include "classes/menu.php";
  include "classes/render.php";
  include "inc/menu_list.php";
 
